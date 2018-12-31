@@ -28,7 +28,7 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.rwandroidtutorial
+package com.raywenderlich.android.emojicalculator
 
 import android.content.Intent
 import android.os.Bundle

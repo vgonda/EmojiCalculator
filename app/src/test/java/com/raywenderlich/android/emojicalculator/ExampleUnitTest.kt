@@ -1,4 +1,4 @@
-package com.raywenderlich.android.rwandroidtutorial
+package com.raywenderlich.android.emojicalculator
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.raywenderlich.android.rwandroidtutorial
+package com.raywenderlich.android.emojicalculator
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
   fun useAppContext() {
     // Context of the app under test.
     val appContext = InstrumentationRegistry.getTargetContext()
-    assertEquals("com.raywenderlich.android.rwandroidtutorial", appContext.packageName)
+    assertEquals("com.raywenderlich.android.emojicalculator", appContext.packageName)
   }
 }
