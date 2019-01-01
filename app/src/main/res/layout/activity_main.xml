@@ -1,18 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  tools:context=".MainActivity">
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/textInputLayout"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:padding="16dp"
+    app:layout_constraintBottom_toTopOf="@+id/buttonBad"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintVertical_chainStyle="packed"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/inputAmount"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="@string/check_amount"
+      android:inputType="numberDecimal" />
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <Button
+    android:id="@+id/buttonBad"
+    style="@style/Widget.AppCompat.Button.Borderless"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:text="@string/bad"
+    android:textSize="@dimen/emojiSize"
+    app:layout_constraintBottom_toTopOf="@+id/textTaxLabel"
+    app:layout_constraintEnd_toStartOf="@+id/buttonOkay"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+
+  <Button
+    android:id="@+id/buttonOkay"
+    style="@style/Widget.AppCompat.Button.Borderless"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:text="@string/okay"
+    android:textSize="@dimen/emojiSize"
+    app:layout_constraintBaseline_toBaselineOf="@+id/buttonBad"
+    app:layout_constraintEnd_toStartOf="@+id/buttonGreat"
+    app:layout_constraintStart_toEndOf="@+id/buttonBad" />
+
+  <Button
+    android:id="@+id/buttonGreat"
+    style="@style/Widget.AppCompat.Button.Borderless"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:text="@string/great"
+    android:textSize="@dimen/emojiSize"
+    app:layout_constraintBottom_toBottomOf="@+id/buttonOkay"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/buttonOkay" />
 
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Hello World!"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+    android:id="@+id/textTaxLabel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:text="@string/taxLabel"
+    app:layout_constraintBottom_toTopOf="@+id/textTotalLabel"
+    app:layout_constraintEnd_toEndOf="@+id/textTotalLabel"
+    app:layout_constraintTop_toBottomOf="@+id/buttonBad" />
+
+  <TextView
+    android:id="@+id/textTax"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:textStyle="bold"
+    app:layout_constraintBaseline_toBaselineOf="@+id/textTaxLabel"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/textTaxLabel"
+    tools:text="3.72" />
+
+  <TextView
+    android:id="@+id/textTotalLabel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="end"
+    android:padding="16dp"
+    android:text="@string/totalLabel"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textTaxLabel" />
+
+  <TextView
+    android:id="@+id/textTotal"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:textStyle="bold"
+    app:layout_constraintBaseline_toBaselineOf="@+id/textTotalLabel"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="@+id/textTax"
+    tools:text="15.87" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

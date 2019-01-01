@@ -34,6 +34,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.raywenderlich.android.rwandroidtutorial.MainViewModel
+import com.raywenderlich.android.rwandroidtutorial.UiModel
 
 /**
  * Main Screen

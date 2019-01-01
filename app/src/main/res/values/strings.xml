@@ -1,3 +1,9 @@
 <resources>
-  <string name="app_name">RWAndroidTutorial</string>
+  <string name="app_name">Emoji Calculator</string>
+  <string name="check_amount">Check Amount</string>
+  <string name="bad">😕</string>
+  <string name="okay">🙂</string>
+  <string name="great">😁</string>
+  <string name="taxLabel">+ Tax</string>
+  <string name="totalLabel">Total</string>
 </resources>
