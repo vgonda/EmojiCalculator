@@ -30,6 +30,4 @@
 
 package com.raywenderlich.android.rwandroidtutorial
 
-class UiModel {
-
-}
+class UiModel(val tip: Double, val total: Double, val percentage: Double)

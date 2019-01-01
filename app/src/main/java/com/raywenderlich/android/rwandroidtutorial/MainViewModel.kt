@@ -35,6 +35,15 @@ import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
 
+  fun calculateTip(billTotal: Double, percentage: Double, roundUp: Boolean) {
+    var tip = billTotal * percentage
+    if (roundUp) {
+      val additionalTip = Math.ceil(tip + billTotal) - (tip + billTotal)
+      tip += additionalTip
+    }
+    state.postValue(UiModel(tip, tip + billTotal, tip / billTotal * 100))
+  }
+
   internal var state: MutableLiveData<UiModel> = MutableLiveData()
 
 }

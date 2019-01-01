@@ -36,6 +36,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.raywenderlich.android.rwandroidtutorial.MainViewModel
 import com.raywenderlich.android.rwandroidtutorial.UiModel
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * Main Screen
@@ -49,12 +50,33 @@ class MainActivity : AppCompatActivity() {
     setContentView(R.layout.activity_main)
     viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-    viewModel.state.observe(this, Observer<UiModel>{ uiModel ->
+    viewModel.state.observe(this, Observer<UiModel> { uiModel ->
       render(uiModel)
     })
+
+    buttonBad.setOnClickListener { calculateTip(BAD_TIP_PERCENTAGE) }
+    buttonOkay.setOnClickListener { calculateTip(OKAY_TIP_PERCENTAGE) }
+    buttonGreat.setOnClickListener { calculateTip(GREAT_TIP_PERCENTAGE) }
+  }
+
+  private fun calculateTip(percentage: Double) {
+    inputAmount.text?.toString()?.let { bill ->
+      if (bill.isNotEmpty()) {
+        viewModel.calculateTip(bill.toDouble(), percentage,
+            switchRound.isChecked)
+      }
+    }
   }
 
   private fun render(uiModel: UiModel) {
+    textTip.text = String.format("%.2f", uiModel.tip)
+    textTotal.text = String.format("%.2f", uiModel.total)
+    textPercent.text = String.format("%.2f", uiModel.percentage) + "%"
+  }
+
+  companion object {
+    const val BAD_TIP_PERCENTAGE = 0.15
+    const val OKAY_TIP_PERCENTAGE = 0.18
+    const val GREAT_TIP_PERCENTAGE = 0.20
   }
 }
-
