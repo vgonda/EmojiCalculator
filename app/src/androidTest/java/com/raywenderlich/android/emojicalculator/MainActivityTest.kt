@@ -50,10 +50,9 @@ class MainActivityTest {
   fun whenOkayButtonIsPressedAndAmountIsFilledTipIsSet() {
     ActivityScenario.launch(MainActivity::class.java)
 
-    inputCheckAmountAndSelectOkayButton("10")
+    inputCheckAmountAndSelectOkayButton("11")
 
-    onView(allOf(withId(R.id.textTip), withText("1.80")))
-        .check(matches(isDisplayed()))
+    verifyTipIsCorrect("1.98")
   }
 
   @Test
@@ -62,10 +61,9 @@ class MainActivityTest {
 
     onView(withId(R.id.switchRound))
         .perform(click())
-    inputCheckAmountAndSelectOkayButton("10")
+    inputCheckAmountAndSelectOkayButton("11")
 
-    onView(allOf(withId(R.id.textTip), withText("2.00")))
-        .check(matches(isDisplayed()))
+    verifyTipIsCorrect("2.00")
   }
 
   //region Screen Robots
@@ -74,6 +72,11 @@ class MainActivityTest {
         .perform(typeText(input))
     onView(withId(R.id.buttonOkay))
         .perform(click())
+  }
+
+  private fun verifyTipIsCorrect(tip: String) {
+    onView(allOf(withId(R.id.textTip), withText(tip)))
+        .check(matches(isDisplayed()))
   }
   //endregion
 }
