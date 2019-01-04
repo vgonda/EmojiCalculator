@@ -32,10 +32,6 @@ package com.raywenderlich.android.emojicalculator
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import com.raywenderlich.android.rwandroidtutorial.MainViewModel
-import com.raywenderlich.android.rwandroidtutorial.UiModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -43,16 +39,9 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : AppCompatActivity() {
 
-  private lateinit var viewModel: MainViewModel
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
-    viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-
-    viewModel.state.observe(this, Observer<UiModel> { uiModel ->
-      render(uiModel)
-    })
 
     buttonBad.setOnClickListener { calculateTip(BAD_TIP_PERCENTAGE) }
     buttonOkay.setOnClickListener { calculateTip(OKAY_TIP_PERCENTAGE) }
@@ -62,16 +51,21 @@ class MainActivity : AppCompatActivity() {
   private fun calculateTip(percentage: Double) {
     inputAmount.text?.toString()?.let { bill ->
       if (bill.isNotEmpty()) {
-        viewModel.calculateTip(bill.toDouble(), percentage,
-            switchRound.isChecked)
+        val billTotal = bill.toDouble()
+        var tip = billTotal * percentage
+        if (switchRound.isChecked) {
+          val additionalTip = Math.ceil(tip + billTotal) - (tip + billTotal)
+          tip += additionalTip
+        }
+        showResult(tip, tip + billTotal, tip / billTotal * 100)
       }
     }
   }
 
-  private fun render(uiModel: UiModel) {
-    textTip.text = String.format("%.2f", uiModel.tip)
-    textTotal.text = String.format("%.2f", uiModel.total)
-    textPercent.text = String.format("%.2f", uiModel.percentage) + "%"
+  private fun showResult(tip: Double, total: Double, percentage: Double) {
+    textTip.text = String.format("%.2f", tip)
+    textTotal.text = String.format("%.2f", total)
+    textPercent.text = String.format("%.2f", percentage) + "%"
   }
 
   companion object {
